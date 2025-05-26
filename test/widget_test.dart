@@ -1,30 +1,23 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
+import 'package:flutter_niw/test/widget_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_niw/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('버튼이 존재하고 탭 가능함', (WidgetTester tester) async {
+    // WidgetTest 위젯을 MaterialApp로 감싸서 테스트 환경 구성
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: WidgetTest(),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // 버튼이 화면에 존재하는지 확인
+    expect(find.text('버튼'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // 버튼 탭 시도
+    await tester.tap(find.text('버튼'));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // 콘솔 출력은 테스트에서 확인 불가하지만, 이 시점에 눌림은 발생한 것
   });
 }

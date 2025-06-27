@@ -5,11 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('버튼이 존재하고 탭 가능함', (WidgetTester tester) async {
     // WidgetTest 위젯을 MaterialApp로 감싸서 테스트 환경 구성
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: WidgetTest(),
-      ),
-    );
+    await tester.pumpWidget(const MaterialApp(home: WidgetTest()));
 
     // 버튼이 화면에 존재하는지 확인
     expect(find.text('버튼'), findsOneWidget);

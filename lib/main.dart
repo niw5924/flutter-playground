@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_niw/notifications/notification_page.dart';
+import 'package:flutter_niw/drag_canvas/drag_canvas_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -8,6 +8,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: NotificationPage());
+    return const MaterialApp(home: DragCanvasPage());
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:app_links/app_links.dart';
 import 'package:flutter_niw/airbridge_qr/airbridge_qr_screen.dart';
 import 'package:flutter_niw/airbridge_qr/code_screen.dart';
+import 'package:airbridge_flutter_sdk/airbridge_flutter_sdk.dart';
 
 void main() => runApp(const MyApp());
 
@@ -14,36 +14,29 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _navKey = GlobalKey<NavigatorState>();
-  late final AppLinks _appLinks;
-  String? _lastHandledUri;
 
   @override
   void initState() {
     super.initState();
-    _initAppLinks();
-  }
 
-  Future<void> _initAppLinks() async {
-    _appLinks = AppLinks();
-
-    // 앱이 꺼져있다가 링크로 실행된 경우
-    final initial = await _appLinks.getInitialLink();
-    if (initial != null) _handleUri(initial);
-
-    // 앱이 실행 중일 때 새 링크 수신
-    _appLinks.uriLinkStream.listen((uri) {
+    // 1) 딥링크 콜백: 설치된 상태 + 지연 딥링크 모두 여기로 옴
+    Airbridge.setOnDeeplinkReceived((deeplink) {
+      debugPrint('Airbridge deeplink: $deeplink');
+      final uri = Uri.tryParse(deeplink);
+      if (uri == null) return;
       _handleUri(uri);
+      print("통과함통과함통과함통과함통과함");
     });
   }
 
   void _handleUri(Uri uri) {
     final uriStr = uri.toString();
-    if (_lastHandledUri == uriStr) return; // 중복 방지
-    _lastHandledUri = uriStr;
 
+    // 원하는 파라미터 추출
     final code = uri.queryParameters['code'];
     if (code == null || code.isEmpty) return;
 
+    // 네비게이터 준비 이후 화면 전환
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final ctx = _navKey.currentState?.overlay?.context;
       if (ctx == null) return;

@@ -1,0 +1,22 @@
+{
+  "sdkEnabled": boolean,
+  "logLevel": "debug" | "info" | "warning" | "error" | "fault",
+  "autoStartTrackingEnabled": boolean,
+  "autoDetermineTrackingAuthorizationTimeoutInSecond": number,
+  "trackMetaDeferredAppLinkEnabled": boolean,
+  "sessionTimeoutInSecond": number,
+  "metaInstallReferrerAppID": string,
+  "trackAirbridgeDeeplinkOnlyEnabled": boolean,
+  "trackInSessionLifecycleEventEnabled": boolean,
+  "trackingLinkCustomDomains": [string],
+  "hashUserInformationEnabled": boolean,
+  "sdkSignatureID": string,
+  "sdkSignatureSecret": string,
+  "clearEventBufferOnInitializeEnabled": boolean,
+  "eventBufferCountLimit": number,
+  "eventBufferSizeLimitInGibibyte": number,
+  "eventTransmitIntervalInSecond": number,
+  "isHandleAirbridgeDeeplinkOnly": boolean,
+  "collectTCFDataEnabled": boolean,
+  "trackingBlocklist": [string]
+}

@@ -1,3 +1,5 @@
+package com.example.flutter_niw
+
 import co.ab180.airbridge.flutter.AirbridgeFlutter
 import android.app.Application
 

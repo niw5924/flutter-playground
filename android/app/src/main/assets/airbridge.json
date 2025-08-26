@@ -16,7 +16,7 @@
   "eventBufferCountLimit": number,
   "eventBufferSizeLimitInGibibyte": number,
   "eventTransmitIntervalInSecond": number,
-  "isHandleAirbridgeDeeplinkOnly": false,
+  "isHandleAirbridgeDeeplinkOnly": boolean,
   "collectTCFDataEnabled": boolean,
   "trackingBlocklist": [string]
 }

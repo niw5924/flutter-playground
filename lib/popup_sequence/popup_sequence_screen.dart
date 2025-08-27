@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,43 +13,46 @@ class _PopupSequenceScreenState extends State<PopupSequenceScreen> {
   @override
   void initState() {
     super.initState();
-    _showPopupsSequentially();
+    _spawnManyDialogs();
   }
 
-  Future<void> _showPopupsSequentially() async {
+  Future<void> _spawnManyDialogs() async {
     for (int i = 1; i <= 5; i++) {
-      // 0.5초 대기 후 팝업 표시
       await Future.delayed(const Duration(milliseconds: 500));
+      _runOneDialogFlow(i);
+    }
+  }
 
-      if (!mounted) return;
+  Future<void> _runOneDialogFlow(int i) async {
+    final result = await showDialog<bool>(
+      context: context,
+      barrierDismissible: true,
+      builder: (ctx) {
+        return AlertDialog(
+          title: Text('팝업 $i'),
+          content: Text('이것은 $i번째 팝업입니다.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(false),
+              child: const Text('취소'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(true),
+              child: const Text('확인'),
+            ),
+          ],
+        );
+      },
+    );
 
-      // 팝업 띄우기
-      showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (ctx) {
-          return AlertDialog(
-            title: Text('팝업 $i'),
-            content: Text('이것은 $i번째 팝업입니다.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                  context.go('/a');
-                },
-                child: const Text('취소'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                  context.go('/b');
-                },
-                child: const Text('확인'),
-              ),
-            ],
-          );
-        },
-      );
+    if (result == true) {
+      print("확인화면확인화면확인화면");
+      print(i);
+      context.go('/b');
+    } else {
+      print("취소화면취소화면취소화면");
+      print(i);
+      context.go('/a');
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PopupSequenceScreen extends StatefulWidget {
   const PopupSequenceScreen({super.key});
@@ -16,11 +17,12 @@ class _PopupSequenceScreenState extends State<PopupSequenceScreen> {
 
   Future<void> _showPopupsSequentially() async {
     for (int i = 1; i <= 5; i++) {
-      // 0.5초 대기
+      // 0.5초 대기 후 팝업 표시
       await Future.delayed(const Duration(milliseconds: 500));
 
       if (!mounted) return;
 
+      // 팝업 띄우기
       showDialog(
         context: context,
         barrierDismissible: true,
@@ -30,8 +32,18 @@ class _PopupSequenceScreenState extends State<PopupSequenceScreen> {
             content: Text('이것은 $i번째 팝업입니다.'),
             actions: [
               TextButton(
-                onPressed: () => Navigator.of(ctx).pop(),
-                child: const Text('닫기'),
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                  context.go('/a');
+                },
+                child: const Text('취소'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                  context.go('/b');
+                },
+                child: const Text('확인'),
               ),
             ],
           );

@@ -1,4 +1,3 @@
-// lib/comment_panel/comment_panel_screen.dart
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'widgets/chat_input_bar.dart';
@@ -15,7 +14,7 @@ class _CommentPanelScreenState extends State<CommentPanelScreen> {
   final PanelController _panelCtrl = PanelController();
   double _panelPos = 0.0; // 0.0 ~ 1.0
 
-  static const double _inputBarHeight = 56; // 인풋바 대략 높이(아이콘 포함)
+  static const double _inputBarHeight = 56; // 인풋바 대략 높이
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +34,13 @@ class _CommentPanelScreenState extends State<CommentPanelScreen> {
         controller: _panelCtrl,
         minHeight: 0,
         maxHeight: maxH,
-        backdropEnabled: true,
+        backdropEnabled: false,
         panelSnapping: true,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
         onPanelSlide: (pos) => setState(() => _panelPos = pos),
         body: Stack(
           children: [
-            // 메시지 리스트: 인풋이 올라간 만큼 하단 패딩 추가
+            /// 메시지 리스트: 인풋이 올라간 만큼 하단 패딩 추가
             Positioned.fill(
               child: ListView.builder(
                 reverse: true,
@@ -55,7 +54,8 @@ class _CommentPanelScreenState extends State<CommentPanelScreen> {
                 itemBuilder: (_, i) => ListTile(title: Text('Message $i')),
               ),
             ),
-            // 인풋바: 패널/키보드만큼 함께 상승
+
+            /// 인풋바: 패널/키보드만큼 함께 상승
             Positioned(
               left: 0,
               right: 0,
@@ -76,7 +76,6 @@ class _CommentPanelScreenState extends State<CommentPanelScreen> {
           ],
         ),
         panelBuilder: (sc) {
-          // 패널 내부는 기존 그대로
           final kbPanel = MediaQuery.of(context).viewInsets.bottom;
           return Padding(
             padding: EdgeInsets.only(bottom: kbPanel),

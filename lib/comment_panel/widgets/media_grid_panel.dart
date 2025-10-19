@@ -47,24 +47,18 @@ class MediaGridPanel extends StatelessWidget {
                   ),
             ),
           ),
-          SafeArea(
-            top: false,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextButton(
-                    onPressed: onCancel,
-                    child: const Text('취소'),
-                  ),
+          Row(
+            children: [
+              Expanded(
+                child: TextButton(onPressed: onCancel, child: const Text('취소')),
+              ),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () => onSubmit(const []),
+                  child: const Text('첨부'),
                 ),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () => onSubmit(const []),
-                    child: const Text('첨부'),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

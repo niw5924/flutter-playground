@@ -15,31 +15,28 @@ class _ChatInputBarState extends State<ChatInputBar> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: Container(
-        color: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child: Row(
-          children: [
-            IconButton(icon: const Icon(Icons.add), onPressed: widget.onPlus),
-            Expanded(
-              child: TextField(
-                controller: _c,
-                decoration: const InputDecoration(
-                  hintText: '댓글을 입력하세요',
-                  border: OutlineInputBorder(borderSide: BorderSide.none),
-                ),
-                minLines: 1,
-                maxLines: 4,
+    return Container(
+      color: Colors.blue,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      child: Row(
+        children: [
+          IconButton(icon: const Icon(Icons.add), onPressed: widget.onPlus),
+          Expanded(
+            child: TextField(
+              controller: _c,
+              decoration: const InputDecoration(
+                hintText: '댓글을 입력하세요',
+                border: OutlineInputBorder(borderSide: BorderSide.none),
               ),
+              minLines: 1,
+              maxLines: 4,
             ),
-            IconButton(
-              icon: const Icon(Icons.send),
-              onPressed: () => widget.onSend(_c.text),
-            ),
-          ],
-        ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.send),
+            onPressed: () => widget.onSend(_c.text),
+          ),
+        ],
       ),
     );
   }

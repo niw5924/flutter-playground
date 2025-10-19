@@ -2,12 +2,13 @@ import 'package:go_router/go_router.dart';
 
 import 'airbridge_qr/airbridge_qr_screen.dart';
 import 'airbridge_qr/code_screen.dart';
+import 'comment_panel/comment_panel_screen.dart';
 import 'login_background/login_background_screen.dart';
 import 'popup_sequence/screen_a.dart';
 import 'popup_sequence/screen_b.dart';
 
 final goRouter = GoRouter(
-  initialLocation: '/login_background',
+  initialLocation: '/comment_panel',
   routes: [
     GoRoute(
       path: '/airbridge_qr',
@@ -26,6 +27,10 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/login_background',
       builder: (context, state) => const LoginBackground(),
+    ),
+    GoRoute(
+      path: '/comment_panel',
+      builder: (context, state) => const CommentPanelScreen(),
     ),
   ],
 );

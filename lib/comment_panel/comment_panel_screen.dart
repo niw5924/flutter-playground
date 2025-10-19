@@ -35,12 +35,14 @@ class _CommentPanelScreenState extends State<CommentPanelScreen> {
         controller: _panelCtrl,
         minHeight: 0,
         maxHeight: maxH,
-        backdropEnabled: false,
         // 딤/배경탭 닫힘 없음
+        backdropEnabled: false,
         panelSnapping: true,
+        // 중간 스냅(0.4)
+        snapPoint: _overlayThreshold,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-        onPanelSlide: (pos) => setState(() => _panelPos = pos),
         // 진행도 갱신
+        onPanelSlide: (pos) => setState(() => _panelPos = pos),
         body: Stack(
           children: [
             Positioned.fill(

@@ -6,9 +6,10 @@ import 'comment_panel/comment_panel_screen.dart';
 import 'login_background/login_background_screen.dart';
 import 'popup_sequence/screen_a.dart';
 import 'popup_sequence/screen_b.dart';
+import 'video/video_screen.dart';
 
 final goRouter = GoRouter(
-  initialLocation: '/comment_panel',
+  initialLocation: '/video',
   routes: [
     GoRoute(
       path: '/airbridge_qr',
@@ -32,5 +33,6 @@ final goRouter = GoRouter(
       path: '/comment_panel',
       builder: (context, state) => const CommentPanelScreen(),
     ),
+    GoRoute(path: '/video', builder: (context, state) => const VideoScreen()),
   ],
 );

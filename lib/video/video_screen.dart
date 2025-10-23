@@ -58,18 +58,18 @@ class _VideoScreenState extends State<VideoScreen> {
                 ? Text(_errorText!, textAlign: TextAlign.center)
                 : (!_isReady
                     ? const CircularProgressIndicator()
-                    : Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        AspectRatio(
-                          aspectRatio: _controller.value.aspectRatio,
+                    : Container(
+                      width: 400,
+                      height: 500,
+                      color: Colors.red,
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: SizedBox(
+                          width: _controller.value.size.width,
+                          height: _controller.value.size.height,
                           child: VideoPlayer(_controller),
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          '원래 비율: ${_controller.value.aspectRatio.toStringAsFixed(4)}',
-                        ),
-                      ],
+                      ),
                     )),
       ),
     );

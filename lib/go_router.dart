@@ -3,13 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'airbridge_qr/airbridge_qr_screen.dart';
 import 'airbridge_qr/code_screen.dart';
 import 'comment_panel/comment_panel_screen.dart';
+import 'list_button/list_button_screen.dart';
 import 'login_background/login_background_screen.dart';
 import 'popup_sequence/screen_a.dart';
 import 'popup_sequence/screen_b.dart';
 import 'video/video_screen.dart';
 
 final goRouter = GoRouter(
-  initialLocation: '/video',
+  initialLocation: '/list_button',
   routes: [
     GoRoute(
       path: '/airbridge_qr',
@@ -25,6 +26,10 @@ final goRouter = GoRouter(
     ),
     GoRoute(path: '/a', builder: (context, state) => const ScreenA()),
     GoRoute(path: '/b', builder: (context, state) => const ScreenB()),
+    GoRoute(
+      path: '/list_button',
+      builder: (context, state) => const ListButtonScreen(),
+    ),
     GoRoute(
       path: '/login_background',
       builder: (context, state) => const LoginBackground(),

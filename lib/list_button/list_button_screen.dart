@@ -5,7 +5,8 @@ class ListButtonScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final list = ['A', 'B', 'C', 'D'];
+    final listLength = 4;
+    final myList = [1, 2];
 
     return Scaffold(
       appBar: AppBar(title: const Text('리스트 버튼')),
@@ -13,8 +14,22 @@ class ListButtonScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            for (String s in list) ...[
-              ElevatedButton(onPressed: null, child: Text(s)),
+            for (int i = 0; i < listLength; i++) ...[
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      (i < myList.length) ? Colors.green : Colors.red,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () {
+                  if (i == myList.length) {
+                    print("기기 추가 가능");
+                  } else {
+                    print("기기 추가 불가능");
+                  }
+                },
+                child: Text('내 기기 ${i + 1}'),
+              ),
             ],
           ],
         ),

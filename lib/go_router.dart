@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'airbridge_qr/airbridge_qr_screen.dart';
 import 'airbridge_qr/code_screen.dart';
 import 'cctv/cctv_preview_screen.dart';
+import 'cctv/webrtc_loopback_screen.dart';
 import 'comment_panel/comment_panel_screen.dart';
 import 'list_button/list_button_screen.dart';
 import 'login_background/login_background_screen.dart';
@@ -11,7 +12,7 @@ import 'popup_sequence/screen_b.dart';
 import 'video/video_screen.dart';
 
 final goRouter = GoRouter(
-  initialLocation: '/cctv',
+  initialLocation: '/webrtc_loopback',
   routes: [
     GoRoute(
       path: '/airbridge_qr',
@@ -41,8 +42,12 @@ final goRouter = GoRouter(
     ),
     GoRoute(path: '/video', builder: (context, state) => const VideoScreen()),
     GoRoute(
-      path: '/cctv',
+      path: '/cctv_preview',
       builder: (context, state) => const CctvPreviewScreen(),
+    ),
+    GoRoute(
+      path: '/webrtc_loopback',
+      builder: (context, state) => const WebRtcLoopbackScreen(),
     ),
   ],
 );

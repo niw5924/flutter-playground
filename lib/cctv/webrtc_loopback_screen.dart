@@ -63,6 +63,7 @@ class _WebRtcLoopbackScreenState extends State<WebRtcLoopbackScreen> {
     };
 
     pc2.onTrack = (event) {
+      debugPrint('onTrack kind=${event.track.kind} id=${event.track.id}');
       if (event.streams.isNotEmpty) {
         setState(() {
           _remoteRenderer.srcObject = event.streams.first;
